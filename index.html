@@ -1,1 +1,42 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centered Image with Buttons</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        img {
+            display: block;
+            margin: 20px auto;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .button {
+            background-color: white;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <img src="your-image-url.jpg" alt="Centered Image">
+    <div class="button-container">
+        <a href="download-link" class="button">Download</a>
+        <a href="patches-link" class="button">Patches</a>
+        <a href="documentation-link" class="button">Documentation</a>
+    </div>
+</body>
+</html>
