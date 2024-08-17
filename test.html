@@ -7,11 +7,14 @@
 </head>
 <body>
     <h1>Download Your Text</h1>
-    <textarea id="userInput" rows="10" cols="30" placeholder="Type your text here..."></textarea><br>
-    <button id="downloadBtn">Pack and Download</button>
+    <form id="textForm">
+        <textarea id="userInput" rows="10" cols="30" placeholder="Type your text here..."></textarea><br>
+        <button type="submit">Pack and Download</button>
+    </form>
 
     <script>
-        document.getElementById('downloadBtn').addEventListener('click', function() {
+        document.getElementById('textForm').addEventListener('submit', function(event) {
+            event.preventDefault();
             const text = document.getElementById('userInput').value;
             const blob = new Blob([text], { type: 'text/plain' });
             const link = document.createElement('a');
