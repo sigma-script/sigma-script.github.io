@@ -39,7 +39,7 @@
             const blob = new Blob([text], { type: 'text/plain' });
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
-            link.download = 'download.sigmascript';
+            link.download = 'file.sigmascript';
             link.click();
         });
     </script>
@@ -86,7 +86,7 @@
             const blob = new Blob([text], { type: 'text/plain' });
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
-            link.download = 'download.ss';
+            link.download = 'file.ss';
             link.click();
         });
     </script>
