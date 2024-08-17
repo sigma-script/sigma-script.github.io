@@ -3,71 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML to EXE Converter</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f8f9fa;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background: #ffffff;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #343a40;
-        }
-        textarea {
-            width: 100%;
-            height: 150px;
-            margin-bottom: 15px;
-            padding: 10px;
-            border: 1px solid #ced4da;
-            border-radius: 5px;
-        }
-        button {
-            width: 100%;
-            padding: 12px;
-            background-color: #17a2b8;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #138496;
-        }
-        #preview {
-            border: 1px solid #ced4da;
-            border-radius: 5px;
-            padding: 10px;
-            margin-top: 15px;
-            height: 200px;
-            overflow: auto;
-        }
-    </style>
+    <title>HTML Code Packing Tool</title>
 </head>
 <body>
-    <div class="container">
-        <h1>HTML to EXE Converter</h1>
-        <textarea id="htmlInput" placeholder="Enter your HTML code here..."></textarea>
-        <button id="packButton">Pack and Download</button>
-        <div id="preview"></div>
-    </div>
+    <h1>HTML Code Packing Tool</h1>
+    <textarea id="htmlCode" rows="10" cols="50" placeholder="Type your HTML code here..."></textarea><br>
+    <label for="fileName">File Name:</label>
+    <input type="text" id="fileName" value="packed_code.html"><br>
+    <button id="downloadBtn">Download and Pack</button>
+
     <script>
-        document.getElementById('htmlInput').addEventListener('input', function() {
-            document.getElementById('preview').innerHTML = this.value;
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            const htmlContent = document.getElementById('htmlCode').value;
+            const fileName = document.getElementById('fileName').value;
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileName;
+            a.click();
+            URL.revokeObjectURL(url);
         });
-        document.getElementById('packButton').onclick = function() {
-            // Logic to convert HTML to EXE will go here
-            alert('This feature is not yet implemented.');
-        };
     </script>
 </body>
 </html>
