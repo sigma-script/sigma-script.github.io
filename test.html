@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text File Download</title>
+</head>
+<body>
+    <h1>Download Your Text</h1>
+    <textarea id="userInput" rows="10" cols="30" placeholder="Type your text here..."></textarea><br>
+    <button id="downloadBtn">Pack and Download</button>
+
+    <script>
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            const text = document.getElementById('userInput').value;
+            const blob = new Blob([text], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'user_input.txt';
+            link.click();
+        });
+    </script>
+</body>
+</html>
