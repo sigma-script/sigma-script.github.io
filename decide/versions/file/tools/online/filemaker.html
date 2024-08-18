@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Packager Tool</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        input, button, textarea { margin: 10px 0; width: 300px; }
+        button { cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>File Packager Tool</h1>
+    <input type="file" id="fileInput" accept="image/*">
+    <br>
+    <textarea id="textInput" placeholder="Type your text here..."></textarea>
+    <br>
+    <input type="text" id="fileName" placeholder="Enter file name (e.g., hello.txt)">
+    <br>
+    <button id="downloadBtn">Pack and Download</button>
+
+    <script>
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            const fileName = document.getElementById('fileName').value || 'download';
+            const textInput = document.getElementById('textInput').value;
+            const fileInput = document.getElementById('fileInput').files[0];
+
+            if (!fileInput && !textInput) {
+                alert('Please upload an image or enter some text.');
+                return;
+            }
+
+            if (fileInput) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const blob = new Blob([event.target.result], { type: fileInput.type });
+                    const link = document.createElement('a');
+                    link.href = URL.createObjectURL(blob);
+                    link.download = fileName;
+                    link.click();
+                };
+                reader.readAsArrayBuffer(fileInput);
+            } else if (textInput) {
+                const blob = new Blob([textInput], { type: 'text/plain' });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = fileName || 'textfile.txt';
+                link.click();
+            }
+        });
+    </script>
+</body>
+</html>
