@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced HTML Editor</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #editor { width: 100%; height: 200px; }
+        #output { border: 1px solid #ccc; padding: 10px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Enhanced HTML Editor</h1>
+    <input type="file" id="fileInput" accept=".html" onchange="loadFile(event)">
+    <textarea id="editor" placeholder="Write your HTML code here..."></textarea>
+    <input type="text" id="filename" placeholder="Enter file name" value="myfile.html">
+    <button onclick="updateOutput()">Preview</button>
+    <button onclick="downloadFile()">Pack and Download</button>
+    <div id="output"></div>
+
+    <script>
+        function loadFile(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('editor').value = e.target.result;
+                updateOutput();
+            };
+            reader.readAsText(file);
+        }
+
+        function updateOutput() {
+            const code = document.getElementById('editor').value;
+            document.getElementById('output').innerHTML = code;
+        }
+
+        function downloadFile() {
+            const code = document.getElementById('editor').value;
+            const filename = document.getElementById('filename').value || 'myfile.html';
+            const blob = new Blob([code], { type: 'text/html' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+        }
+    </script>
+</body>
+</html>
