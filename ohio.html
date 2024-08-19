@@ -3,19 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fullscreen Button Example</title>
+    <title>Fullscreen Button with Fallback</title>
     <style>
-        body {
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #4CAF50;
-            color: white;
-            font-family: Arial, sans-serif;
-        }
-        button {
+        #fullscreenBtn {
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
@@ -23,12 +13,23 @@
     </style>
 </head>
 <body>
-    <h1>Click to Enter Fullscreen</h1>
     <button id="fullscreenBtn">Go Fullscreen</button>
+
     <script>
-        document.getElementById('fullscreenBtn').onclick = function() {
-            document.documentElement.requestFullscreen();
-        };
+        const button = document.getElementById('fullscreenBtn');
+
+        button.addEventListener('click', () => {
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+                document.documentElement.mozRequestFullScreen();
+            } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                document.documentElement.webkitRequestFullscreen();
+            } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+                document.documentElement.msRequestFullscreen();
+            }
+            button.style.display = 'none';
+        });
     </script>
 </body>
 </html>
