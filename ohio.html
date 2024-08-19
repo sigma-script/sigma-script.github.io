@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fullscreen Toggle Example</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #2196F3;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Toggle Fullscreen Mode</h1>
+    <button id="toggleBtn">Enter Fullscreen</button>
+    <script>
+        const toggleBtn = document.getElementById('toggleBtn');
+        toggleBtn.onclick = function() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+                toggleBtn.textContent = 'Exit Fullscreen';
+            } else {
+                document.exitFullscreen();
+                toggleBtn.textContent = 'Enter Fullscreen';
+            }
+        };
+    </script>
+</body>
+</html>
