@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Password Protected Page</title>
+  <style>
+    .green-box {
+      background-color: #008CBA
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 24px;
+      border-radius: 10px;
+    }
+    .go-button {
+      background-color: #008CBA;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-top: 20px;
+      border-radius: 5px;
+    }
+    .password-input {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 200px;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body> 
+  <div class="green-box">
+    Enter the password to continue
+  </div>
+  <input type="password" id="password-input" class="password-input" placeholder="Enter password">
+  <button class="go-button" onclick="checkPassword()">Go</button>
+
+  <script>
+    function checkPassword() {
+      var password = document.getElementById("password-input").value;
+      if (password === "Kellarosa1!") {
+        window.location.href = "https://sigma-script.github.io/Docs";
+      } else {
+        alert("Incorrect password. Please try again.");
+      }
+    }
+  </script>
+</body>
+</html>
